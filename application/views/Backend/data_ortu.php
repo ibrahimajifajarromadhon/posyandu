@@ -8,7 +8,7 @@
 
 <div>
 	<a href="<?php echo base_url() . 'Backend/data_ortu_input' ?>" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-        <i class="fa fa-plus fa-lg mr-1"></i> Tambah Data
+		<i class="fa fa-plus fa-lg mr-1"></i> Tambah Data
 	</a>
 </div>&nbsp;&nbsp;
 <?php if ($this->session->flashdata('success')) : ?>
@@ -21,14 +21,13 @@
 	<div class="w-full overflow-x-auto">
 		<table class="w-full whitespace-no-wrap">
 			<thead>
-				<tr
-					class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-					<th class="px-4 py-3">No</th>
+				<tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+					<th class="px-4 py-3 text-center">No</th>
+					<th class="px-4 py-3">ID Ortu</th>
 					<th class="px-4 py-3">Nama Ayah</th>
 					<th class="px-4 py-3">Nama Ibu</th>
 					<th class="px-4 py-3">No. Handphone</th>
 					<th class="px-4 py-3">Username</th>
-					<th class="px-4 py-3">Password</th>
 					<th class="px-4 py-3">Email</th>
 					<th class="px-4 py-3">Alamat</th>
 					<th class="px-4 py-3">Pekerjaan Ayah</th>
@@ -45,12 +44,12 @@
 				?>
 						<tr class="text-gray-700 dark:text-gray-400">
 							<td class="px-4 py-3">
-								<div class="flex items-center text-sm">
-									<!-- Avatar with inset shadow -->
-									<div>
-										<p class="font-semigrey"><?php echo $no++ ?></p>
-									</div>
+								<div class="text-center">
+									<p class="font-semigrey"><?php echo $no++ ?></p>
 								</div>
+							</td>
+							<td class="px-4 py-3 text-sm">
+								<?php echo !empty($ortu->id_ortu) ? $ortu->id_ortu : "-" ?>
 							</td>
 							<td class="px-4 py-3 text-sm">
 								<?php echo !empty($ortu->nm_ayah) ? $ortu->nm_ayah : "-" ?>
@@ -65,9 +64,6 @@
 								<?php echo !empty($ortu->username) ? $ortu->username : "-" ?>
 							</td>
 							<td class="px-4 py-3 text-sm">
-								********
-							</td>
-							<td class="px-4 py-3 text-sm">
 								<?php echo !empty($ortu->email) ? $ortu->email : "-" ?>
 							</td>
 							<td class="px-4 py-3 text-sm">
@@ -80,17 +76,22 @@
 								<?php echo !empty($ortu->pekerjaan_ibu) ? $ortu->pekerjaan_ibu : "-" ?>
 							</td>
 							<td class="px-4 py-3">
-								<div class="flex items-center space-x-4 text-sm">
+								<div class="flex items-center space-x-1 text-sm">
 									<a
 										href="<?php echo base_url() . 'Backend/data_ortu_edit/' . $ortu->id_ortu . '' ?>" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
 										aria-label="Edit">
-																				<i class="fa fa-edit fa-lg"></i>
+										<i class="fa fa-edit fa-lg"></i>
 
 									</a>
 									<a
 										href="<?php echo base_url() . 'Backend/data_ortu_delete/' . $ortu->id_ortu . '' ?>" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini ?')"
 										aria-label="Delete">
 										<i class="fa fa-trash fa-lg"></i>
+									</a>
+									<a
+										href="<?php echo base_url() . 'Backend/data_ortu_print/' . $ortu->id_ortu . '' ?>" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+										aria-label="Print" title="Print">
+										<i class="fa fa-print fa-lg"></i>
 									</a>
 								</div>
 							</td>

@@ -26,30 +26,131 @@
 </div> <!-- end of ex-basic-1 -->
 <!-- end of breadcrumbs -->
 
+<section class="about-section py-5">
+    <div class="container">
 
-<div class="container grid grid-cols-2 gap-4 px-6 mx-auto">
-    <div class="text-container">
-        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            About PosyanduKita
-        </h2>
-        <p class="text-gray-600">Posyandu Kita adalah pusat pelayanan kesehatan masyarakat
-            memberikan layanan dasar seperti monitoring tumbuh kembang balita. Tenaga kesehatan
-            dan relawan bekerja sama dengan masyarakat untuk memberikan layanan kesehatan yang
-            mudah diakses dan terjangkau. Posyandu Kita juga memberikan informasi tentang pola
-            hidup sehat dan pentingnya perawatan kesehatan pada anak. Melalui kegiatan ini, diharapkan
-            dapat meningkatkan kesadaran masyarakat akan kesehatan. Posyandu Kita berperan penting dalam
-            menjaga kesehatan anak, terutama di daerah yang sulit dijangkau oleh fasilitas kesehatan formal.</p>
-    </div>
-    <div class="img-wrapper" style="display: flex; justify-content: center;">
-        <img class="img-fluid" src="<?php echo base_url() . 'assets/Frontend/images/video-image.png' ?>" width="3000px" alt="banner.png">
-    </div>
-</div> <!-- end of img-wrapper -->
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Tentang Posyandu Wijaya Kusuma</h2>
+            <p class="text-muted">Bersama Mewujudkan Generasi Sehat dan Bebas Stunting</p>
+        </div>
 
-</div>
-<br>
-<CENTER>
-    <button type="submit" class="btn-outline-reg">KLIK JIKA ANDA SUKA</button>
-</CENTER>
-</div>
-<br>
-<br>
+        <!-- Sejarah -->
+        <div class="mb-5">
+            <h4 class="fw-bold mb-3">Sejarah</h4>
+            <p>
+                Posyandu Wijaya Kusuma didirikan sebagai bentuk kepedulian masyarakat terhadap 
+                kesehatan ibu dan anak di lingkungan sekitar. Sejak awal berdiri, Posyandu ini 
+                berkomitmen memberikan pelayanan kesehatan dasar secara rutin dan terpadu.
+            </p>
+            <p>
+                Dengan dukungan kader yang aktif dan partisipasi masyarakat, Posyandu Wijaya Kusuma 
+                terus berkembang dalam meningkatkan kualitas pelayanan, khususnya dalam pencegahan 
+                stunting dan pemantauan tumbuh kembang balita.
+            </p>
+        </div>
+
+        <!-- Struktur Organisasi -->
+        <div class="mb-5">
+            <h4 class="fw-bold mb-3">Struktur Organisasi</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Ketua:</strong> Ibu Siti Rahmawati</li>
+                        <li class="list-group-item"><strong>Wakil Ketua:</strong> Ibu Dewi Lestari</li>
+                        <li class="list-group-item"><strong>Sekretaris:</strong> Ibu Nur Aisyah</li>
+                        <li class="list-group-item"><strong>Bendahara:</strong> Ibu Rina Kartika</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Kader 1:</strong> Ibu Yanti</li>
+                        <li class="list-group-item"><strong>Kader 2:</strong> Ibu Melati</li>
+                        <li class="list-group-item"><strong>Kader 3:</strong> Ibu Sulastri</li>
+                        <li class="list-group-item"><strong>Kader 4:</strong> Ibu Indah</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sarana Prasarana -->
+        <div class="mb-5">
+            <h4 class="fw-bold mb-3">Sarana dan Prasarana</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li>Timbangan bayi dan balita</li>
+                        <li>Alat ukur tinggi badan</li>
+                        <li>Buku KIA (Kesehatan Ibu dan Anak)</li>
+                        <li>Meja dan kursi pelayanan</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li>Alat pemeriksaan kesehatan dasar</li>
+                        <li>Media edukasi kesehatan</li>
+                        <li>Ruang pelayanan yang nyaman</li>
+                        <li>Perlengkapan administrasi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layanan -->
+        <div>
+            <h4 class="fw-bold mb-3">Layanan</h4>
+            <div class="row g-4">
+
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Pelayanan Balita</h5>
+                            <p class="card-text">
+                                Penimbangan rutin, pemantauan pertumbuhan dan perkembangan, 
+                                serta pemberian vitamin dan imunisasi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Pelayanan Ibu Hamil</h5>
+                            <p class="card-text">
+                                Pemeriksaan kesehatan dasar, edukasi gizi, serta pemantauan 
+                                kondisi kehamilan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Pencegahan Stunting</h5>
+                            <p class="card-text">
+                                Edukasi gizi, pemantauan status gizi anak, serta 
+                                penyuluhan kesehatan keluarga.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Penyuluhan Kesehatan</h5>
+                            <p class="card-text">
+                                Kegiatan edukasi tentang pola hidup sehat, kebersihan, 
+                                dan pentingnya imunisasi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>

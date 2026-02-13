@@ -32,7 +32,7 @@
     </h2>
 
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
-        <div class="w-full overflow-x-auto mt-16">
+        <div class="w-full overflow-x-auto mt-16 table-responsive">
             <table class="table text-center">
                 <thead>
                     <tr
@@ -42,6 +42,7 @@
                         <th class="px-4 py-3">Nama Ibu</th>
                         <th class="px-4 py-3">Tanggal Imunisasi</th>
                         <th class="px-4 py-3">Jenis Imunisasi</th>
+                        <th class="px-4 py-3">Keterangan</th>
                     </tr>
                 </thead>
                 <tbody
@@ -64,13 +65,15 @@
                                     <?php echo $imunisasi->nm_ibu ?>
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    <?php
-                                    $date = new DateTime($imunisasi->tgl_imunisasi);
-                                    echo $date->format('d F Y');
+                                    <?=
+                                    tgl_indo($imunisasi->tgl_imunisasi);
                                     ?>
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    <?php echo $imunisasi->jenis_imunisasi ?>
+                                    <?php echo $imunisasi->nama_jenis_imunisasi ?>
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    <?php echo $imunisasi->keterangan ?>
                                 </td>
                             </tr>
                         <?php

@@ -50,7 +50,7 @@
                                 <?php echo $pertumbuhan->tgl_cek ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $pertumbuhan->usia ?> bulan
+                                <?php echo $pertumbuhan->usia ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <?php echo $pertumbuhan->berat_badan ?> kg

@@ -25,10 +25,20 @@
               <?php
               foreach ($tbl_ortu as $ortu) {
               ?>
-                <option value="<?php echo $ortu->id_ortu ?>" <?php echo ($ortu->id_ortu == $balita->id_ortu) ? 'selected' : '' ?>><?php echo $ortu->nm_ibu ?></option>
+                <option value="<?php echo $ortu->id_ortu ?>" <?php echo ($ortu->id_ortu == $balita->id_ortu) ? 'selected' : '' ?>>[<?= $ortu->id_ortu ?>] <?php echo $ortu->nm_ibu ?></option>
               <?php  } ?>
             </select>
             <span class="text-sm text-red-600"><?= form_error('id_ortu') ?></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="nik_balita">NIK Balita</label>
+            <input type="text" id="nik_balita" name="nik_balita" class="form-control" value="<?php echo $balita->nik_balita ?>"  pattern="\d{16}" maxlength="16">
+            <span class="text-sm text-red-600"><?= form_error('nik_balita') ?></span>
           </div>
         </div>
       </div>

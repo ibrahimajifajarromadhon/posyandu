@@ -8,11 +8,6 @@
 			<i class="fa fa-plus fa-lg mr-1"></i> Tambah Data
 		</a>
 	</div>
-	<div>
-		<a href="<?php echo base_url() . 'Backend/data_pertumbuhan_print' ?>" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-warning border border-transparent rounded-lg active:bg-warning hover:warning focus:outline-none focus:shadow-outline-purple">
-			<i class="fa fa-print fa-lg mr-1"></i> Print Data All
-		</a>
-	</div>
 </div>&nbsp;&nbsp;
 <?php if ($this->session->flashdata('success')) : ?>
 	<div class="mb-2 mt-0 alert alert-success alert-dismissible text-green-100">
@@ -26,10 +21,11 @@
 			<thead>
 				<tr
 					class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-					<th class="px-4 py-3">No</th>
+					<th class="px-4 py-3 text-center">No</th>
+					<th class="px-4 py-3">ID Pertumbuhan</th>
 					<th class="px-4 py-3">Nama Balita</th>
-					<th class="px-4 py-3">Tanggal Cek Pertumbuhan</th>
-					<th class="px-4 py-3">Usia (Bulan)</th>
+					<th class="px-4 py-3">Tanggal Cek</th>
+					<th class="px-4 py-3">Usia (Bulan/Tahun)</th>
 					<th class="px-4 py-3">Berat Badan (Kg)</th>
 					<th class="px-4 py-3">Tinggi Badan (Cm)</th>
 					<th class="px-4 py-3">Lingkar Kepala (Cm)</th>
@@ -46,21 +42,21 @@
 				?>
 						<tr class="text-gray-700 dark:text-gray-400">
 							<td class="px-4 py-3">
-								<div class="flex items-center text-sm">
-									<!-- Avatar with inset shadow -->
-									<div>
-										<p class="font-semigrey"><?php echo $no++ ?></p>
-									</div>
+								<div class="text-center">
+									<p class="font-semigrey"><?php echo $no++ ?></p>
 								</div>
+							</td>
+							<td class="px-4 py-3 text-sm">
+								<?php echo $pertumbuhan->id_pertumbuhan ?>
 							</td>
 							<td class="px-4 py-3 text-sm">
 								<?php echo $pertumbuhan->nm_balita ?>
 							</td>
 							<td class="px-4 py-3 text-sm">
-								<?php echo $pertumbuhan->tgl_cek ?>
+								<?php echo tgl_indo($pertumbuhan->tgl_cek); ?>
 							</td>
 							<td class="px-4 py-3 text-sm">
-								<?php echo $pertumbuhan->usia ?> bulan
+								<?php echo $pertumbuhan->usia ?>
 							</td>
 							<td class="px-4 py-3 text-sm">
 								<?php echo $pertumbuhan->berat_badan ?> kg
@@ -75,7 +71,7 @@
 								<?php echo $pertumbuhan->lingkar_lengan ?> cm
 							</td>
 							<td class="px-4 py-3">
-								<div class="flex items-center space-x-4 text-sm">
+								<div class="flex items-center space-x-1 text-sm">
 									<a
 										href="<?php echo base_url() . 'index.php/Backend/data_pertumbuhan_edit/' . $pertumbuhan->id_pertumbuhan . '' ?>" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
 										aria-label="Edit">

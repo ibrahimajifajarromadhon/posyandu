@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Backend extends CI_Controller
 {
 
-	public function __construct()
+	function __construct()
 	{
 		parent::__construct();
 
@@ -20,9 +20,10 @@ class Backend extends CI_Controller
 		$this->load->model('M_Balita');
 		$this->load->model('M_Pertumbuhan');
 		$this->load->model('M_Imunisasi');
+		$this->load->model('M_Jenis_Imunisasi');
 	}
 
-	public function index()
+	function index()
 	{
 		$data['ortu'] = $this->M_Ortu->jumlah_ortu();
 		$data['balita'] = $this->M_Balita->jumlah_balita();
@@ -33,7 +34,7 @@ class Backend extends CI_Controller
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_ortu()
+	function data_ortu()
 	{
 		$config['base_url'] = base_url('Backend/data_ortu');
 		$config['total_rows'] = $this->M_Ortu->count_all_ortu();
@@ -59,13 +60,13 @@ class Backend extends CI_Controller
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_ortu_input()
+	function data_ortu_input()
 	{
 		$data['main_content'] = 'Backend/data_ortu_input.php';
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_ortu_input_aksi()
+	function data_ortu_input_aksi()
 	{
 		$this->form_validation->set_rules('nm_ayah', 'Nama Ayah', 'required');
 		$this->form_validation->set_rules('nm_ibu', 'Nama Ibu', 'required');
@@ -87,6 +88,8 @@ class Backend extends CI_Controller
 			$this->load->view('Backend/layout/main_layout', $data);
 		} else {
 
+			$id_ortu = $this->M_Ortu->generate_id_ortu();
+
 			$nm_ayah = $this->input->POST('nm_ayah');
 			$nm_ibu = $this->input->POST('nm_ibu');
 			$username = $this->input->POST('username');
@@ -99,6 +102,7 @@ class Backend extends CI_Controller
 			$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 			$data = array(
+				'id_ortu' => $id_ortu,
 				'nm_ayah' => $nm_ayah,
 				'nm_ibu' => $nm_ibu,
 				'username' => $username,
@@ -115,7 +119,7 @@ class Backend extends CI_Controller
 		}
 	}
 
-	public function data_ortu_edit($id_ortu)
+	function data_ortu_edit($id_ortu)
 	{
 		$where = array('id_ortu' => $id_ortu);
 		$this->load->model('M_Ortu');
@@ -124,9 +128,10 @@ class Backend extends CI_Controller
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_ortu_edit_aksi()
+	function data_ortu_edit_aksi()
 	{
 		$id_ortu = $this->input->POST('id_ortu');
+
 		$this->form_validation->set_rules('nm_ayah', 'Nama Ayah', 'required');
 		$this->form_validation->set_rules('nm_ibu', 'Nama Ibu', 'required');
 		$this->form_validation->set_rules('no_hp', 'No Handphone', 'required');
@@ -192,7 +197,7 @@ class Backend extends CI_Controller
 		}
 	}
 
-	public function data_ortu_delete($id_ortu)
+	function data_ortu_delete($id_ortu)
 	{
 		$where = array('id_ortu' => $id_ortu);
 		$this->M_Ortu->delete_data($where, 'tbl_ortu');
@@ -200,7 +205,21 @@ class Backend extends CI_Controller
 		redirect('Backend/data_ortu');
 	}
 
-	public function data_balita()
+	function data_ortu_print($id)
+	{
+
+		$data['tbl_ortu'] = $this->M_Ortu->get_all_ortu($id);
+
+		$this->load->library('pdfgenerator');
+		$data['title'] = 'Data Orang Tua';
+		$file_pdf = $data['title'];
+		$paper = 'A4';
+		$orientation = "landscape";
+		$html = $this->load->view('Backend/data_ortu_print.php', $data, true);
+		$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+	}
+
+	function data_balita()
 	{
 		$config['base_url'] = base_url('Backend/data_balita');
 		$config['total_rows'] = $this->M_Balita->count_all_balita();
@@ -226,16 +245,17 @@ class Backend extends CI_Controller
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_balita_input()
+	function data_balita_input()
 	{
 		$data['tbl_ortu'] = $this->M_Ortu->tampil_data()->result();
 		$data['main_content'] = 'Backend/data_balita_input.php';
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_balita_input_aksi()
+	function data_balita_input_aksi()
 	{
 		$this->form_validation->set_rules('id_ortu', 'Nama Ibu', 'required');
+		$this->form_validation->set_rules('nik_balita', 'NIK Balita', 'required');
 		$this->form_validation->set_rules('nm_balita', 'Nama Balita', 'required');
 		$this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
@@ -249,7 +269,10 @@ class Backend extends CI_Controller
 			$data['main_content'] = 'Backend/data_balita_input.php';
 			$this->load->view('Backend/layout/main_layout', $data);
 		} else {
+			$id_balita = $this->M_Balita->generate_id_balita();
+
 			$id_ortu = $this->input->POST('id_ortu');
+			$nik_balita = $this->input->POST('nik_balita');
 			$nm_balita = $this->input->POST('nm_balita');
 			$tgl_lahir = $this->input->POST('tgl_lahir');
 			$jenis_kelamin = $this->input->POST('jenis_kelamin');
@@ -257,13 +280,16 @@ class Backend extends CI_Controller
 			$pb_lahir = $this->input->POST('pb_lahir');
 
 			$data = array(
+				'id_balita' => $id_balita,
 				'id_ortu' => $id_ortu,
+				'nik_balita' => $nik_balita,
 				'nm_balita' => $nm_balita,
 				'tgl_lahir' => $tgl_lahir,
 				'jenis_kelamin' => $jenis_kelamin,
 				'bb_lahir' => $bb_lahir,
 				'pb_lahir' => $pb_lahir
 			);
+
 			$this->M_Balita->input_data($data, 'tbl_balita');
 			$this->session->set_flashdata('success', 'Berhasil tambah data balita!');
 
@@ -271,7 +297,7 @@ class Backend extends CI_Controller
 		}
 	}
 
-	public function data_balita_edit($id_balita)
+	function data_balita_edit($id_balita)
 	{
 		$data['tbl_ortu'] = $this->M_Ortu->tampil_data()->result();
 		$where = array('id_balita' => $id_balita);
@@ -280,10 +306,11 @@ class Backend extends CI_Controller
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_balita_edit_aksi()
+	function data_balita_edit_aksi()
 	{
 		$id_balita = $this->input->POST('id_balita');
 		$this->form_validation->set_rules('id_ortu', 'Nama Ibu', 'required');
+		$this->form_validation->set_rules('nik_balita', 'NIK Balita', 'required');
 		$this->form_validation->set_rules('nm_balita', 'Nama Balita', 'required');
 		$this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
@@ -301,6 +328,7 @@ class Backend extends CI_Controller
 		} else {
 			$id = $this->input->POST('id_balita');
 			$id_ortu = $this->input->POST('id_ortu');
+			$nik_balita = $this->input->POST('nik_balita');
 			$nm_balita = $this->input->POST('nm_balita');
 			$tgl_lahir = $this->input->POST('tgl_lahir');
 			$jenis_kelamin = $this->input->POST('jenis_kelamin');
@@ -309,6 +337,7 @@ class Backend extends CI_Controller
 
 			$data = array(
 				'id_ortu' => $id_ortu,
+				'nik_balita' => $nik_balita,
 				'nm_balita' => $nm_balita,
 				'tgl_lahir' => $tgl_lahir,
 				'jenis_kelamin' => $jenis_kelamin,
@@ -325,7 +354,7 @@ class Backend extends CI_Controller
 		}
 	}
 
-	public function data_balita_delete($id_balita)
+	function data_balita_delete($id_balita)
 	{
 		$where = array('id_balita' => $id_balita);
 		$this->M_Balita->delete_data($where, 'tbl_balita');
@@ -333,13 +362,27 @@ class Backend extends CI_Controller
 		redirect('Backend/data_balita');
 	}
 
-	public function data_pertumbuhan()
+	function data_balita_print($id)
+	{
+
+		$data['tbl_balita'] = $this->M_Balita->get_all_balita($id);
+
+		$this->load->library('pdfgenerator');
+		$data['title'] = 'Data Orang Tua';
+		$file_pdf = $data['title'];
+		$paper = 'A4';
+		$orientation = "landscape";
+		$html = $this->load->view('Backend/data_balita_print.php', $data, true);
+		$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+	}
+
+	function data_pertumbuhan()
 	{
 		$config['base_url'] = base_url('Backend/data_pertumbuhan');
 		$config['total_rows'] = $this->M_Pertumbuhan->count_all_pertumbuhan();
 		$config['per_page'] = 5; // Jumlah data per halaman
 		$config['uri_segment'] = 4; // Biasanya segment ke-3 untuk offset
-		$config['sort'] = 'tgl_cek'; // Kolom yang digunakan untuk sorting
+		$config['sort'] = 'id_pertumbuhan'; // Kolom yang digunakan untuk sorting
 
 		$this->pagination->initialize($config);
 
@@ -359,14 +402,14 @@ class Backend extends CI_Controller
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_pertumbuhan_input()
+	function data_pertumbuhan_input()
 	{
 		$data['tbl_balita'] = $this->M_Balita->tampil_data();
 		$data['main_content'] = 'Backend/data_pertumbuhan_input.php';
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_pertumbuhan_input_aksi()
+	function data_pertumbuhan_input_aksi()
 	{
 		$this->form_validation->set_rules('balita', 'Nama Balita', 'required');
 		$this->form_validation->set_rules('tgl_cek', 'Tanggal Cek', 'required');
@@ -383,6 +426,8 @@ class Backend extends CI_Controller
 			$data['main_content'] = 'Backend/data_pertumbuhan_input.php';
 			$this->load->view('Backend/layout/main_layout', $data);
 		} else {
+			$id_tmbhn = $this->M_Pertumbuhan->generate_id_pertumbuhan();
+
 			$id_balita = $this->input->POST('balita');
 			$tgl_cek = $this->input->POST('tgl_cek');
 			$usia = $this->input->POST('usia');
@@ -392,6 +437,7 @@ class Backend extends CI_Controller
 			$ll = $this->input->POST('lingkar_lengan');
 
 			$data = array(
+				'id_pertumbuhan' => $id_tmbhn,
 				'id_balita' => $id_balita,
 				'tgl_cek' => $tgl_cek,
 				'usia' => $usia,
@@ -400,6 +446,7 @@ class Backend extends CI_Controller
 				'lingkar_kepala' => $lk,
 				'lingkar_lengan' => $ll
 			);
+
 			$this->load->model('M_Pertumbuhan');
 			$this->M_Pertumbuhan->input_data($data, 'tbl_pertumbuhan');
 			$this->session->set_flashdata('success', 'Berhasil tambah data pertumbuhan!');
@@ -407,16 +454,15 @@ class Backend extends CI_Controller
 		}
 	}
 
-	public function data_pertumbuhan_edit($id_pertumbuhan)
+	function data_pertumbuhan_edit($id_pertumbuhan)
 	{
-		$data['tbl_balita'] = $this->M_Balita->tampil_data();
-		$where = array('id_pertumbuhan' => $id_pertumbuhan);
-		$data['tbl_pertumbuhan'] = $this->M_Pertumbuhan->view_data($where, 'tbl_pertumbuhan')->result();
+		$data['pertumbuhan'] = $this->M_Pertumbuhan->get_pertumbuhan_by_id($id_pertumbuhan);
+
 		$data['main_content'] = 'Backend/data_pertumbuhan_edit.php';
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_pertumbuhan_edit_aksi()
+	function data_pertumbuhan_edit_aksi()
 	{
 		$id_pertumbuhan = $this->input->POST('id_pertumbuhan');
 		$this->form_validation->set_rules('balita', 'Nama Balita', 'required');
@@ -466,7 +512,7 @@ class Backend extends CI_Controller
 		}
 	}
 
-	public function data_pertumbuhan_delete($id_pertumbuhan)
+	function data_pertumbuhan_delete($id_pertumbuhan)
 	{
 		$where = array('id_pertumbuhan' => $id_pertumbuhan);
 		$this->M_Pertumbuhan->delete_data($where, 'tbl_pertumbuhan');
@@ -474,7 +520,7 @@ class Backend extends CI_Controller
 		redirect('Backend/data_pertumbuhan');
 	}
 
-	public function data_pertumbuhan_print($id_pertumbuhan = null)
+	function data_pertumbuhan_print($id_pertumbuhan = null)
 	{
 		if ($id_pertumbuhan == null) {
 			$data['tbl_pertumbuhan'] = $this->M_Pertumbuhan->get_all_pertumbuhan($id_pertumbuhan);
@@ -491,13 +537,13 @@ class Backend extends CI_Controller
 		$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
 	}
 
-	public function data_imunisasi()
+	function data_imunisasi()
 	{
 		$config['base_url'] = base_url('Backend/data_imunisasi');
 		$config['total_rows'] = $this->M_Imunisasi->count_all_imunisasi();
 		$config['per_page'] = 5; // Jumlah data per halaman
 		$config['uri_segment'] = 4; // Biasanya segment ke-3 untuk offset
-		$config['sort'] = 'tgl_imunisasi'; // Kolom yang digunakan untuk sorting
+		$config['sort'] = 'id_imunisasi'; // Kolom yang digunakan untuk sorting
 
 		$this->pagination->initialize($config);
 
@@ -517,15 +563,17 @@ class Backend extends CI_Controller
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_imunisasi_input()
+	function data_imunisasi_input()
 	{
 		$data['tbl_ortu'] = $this->M_Ortu->tampil_data()->result();
 		$data['tbl_balita'] = $this->M_Balita->tampil_data();
+		$data['tbl_jenis_imunisasi'] = $this->M_Imunisasi->tampil_data_jenis();
+
 		$data['main_content'] = 'Backend/data_imunisasi_input.php';
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_imunisasi_input_aksi()
+	function data_imunisasi_input_aksi()
 	{
 		$this->form_validation->set_rules('balita', 'Nama Balita', 'required');
 		$this->form_validation->set_rules('tgl_imunisasi', 'Tanggal Imunisasi', 'required');
@@ -539,16 +587,19 @@ class Backend extends CI_Controller
 			$data['main_content'] = 'Backend/data_imunisasi_input.php';
 			$this->load->view('Backend/layout/main_layout', $data);
 		} else {
+			$id_imunisasi = $this->M_Imunisasi->generate_id_imunisasi();
+
 			$balita = $this->input->POST('balita');
 			$nm_ibu = $this->input->POST('nm_ibu');
 			$tgl_imunisasi = $this->input->POST('tgl_imunisasi');
-			$jenis_imunisasi = $this->input->POST('jenis_imunisasi');
+			$id_jenis_imunisasi = $this->input->POST('jenis_imunisasi');
 
 			$data = array(
+				'id_imunisasi' => $id_imunisasi,
 				'id_balita' => $balita,
 				'id_ortu' => $nm_ibu,
 				'tgl_imunisasi' => $tgl_imunisasi,
-				'jenis_imunisasi' => $jenis_imunisasi
+				'id_jenis_imunisasi' => $id_jenis_imunisasi
 			);
 
 			$this->load->model('M_Imunisasi');
@@ -558,18 +609,20 @@ class Backend extends CI_Controller
 		}
 	}
 
-	public function data_imunisasi_edit($id_imunisasi)
+	function data_imunisasi_edit($id_imunisasi)
 	{
 		$data['tbl_ortu'] = $this->M_Ortu->tampil_data()->result();
 		$data['imunisasi'] = $this->M_Imunisasi->get_imunisasi_by_id($id_imunisasi);
+		$data['tbl_jenis_imunisasi'] = $this->M_Imunisasi->tampil_data_jenis();
+
 		$data['main_content'] = 'Backend/data_imunisasi_edit.php';
 		$this->load->view('Backend/layout/main_layout', $data);
 	}
 
-	public function data_imunisasi_edit_aksi()
+	function data_imunisasi_edit_aksi()
 	{
 		$this->form_validation->set_rules('tgl_imunisasi', 'Tanggal Imunisasi', 'required');
-		$this->form_validation->set_rules('jenis_imunisasi', 'Jenis Imunisasi', 'required');
+		$this->form_validation->set_rules('id_jenis_imunisasi', 'Jenis Imunisasi', 'required');
 
 		$this->form_validation->set_message('required', '%s wajib diisi');
 
@@ -585,13 +638,13 @@ class Backend extends CI_Controller
 			$nm_balita = $this->input->POST('nm_balita');
 			$nm_ibu = $this->input->POST('nm_ibu');
 			$tgl_imunisasi = $this->input->POST('tgl_imunisasi');
-			$jenis_imunisasi = $this->input->POST('jenis_imunisasi');
+			$id_jenis_imunisasi = $this->input->POST('id_jenis_imunisasi');
 
 			$data = array(
 				'id_balita' => $nm_balita,
 				'id_ortu' => $nm_ibu,
 				'tgl_imunisasi' => $tgl_imunisasi,
-				'jenis_imunisasi' => $jenis_imunisasi
+				'id_jenis_imunisasi' => $id_jenis_imunisasi
 			);
 
 			$where = array(
@@ -605,7 +658,7 @@ class Backend extends CI_Controller
 		}
 	}
 
-	public function data_imunisasi_delete($id_imunisasi)
+	function data_imunisasi_delete($id_imunisasi)
 	{
 		$where = array('id_imunisasi' => $id_imunisasi);
 		$this->M_Pertumbuhan->delete_data($where, 'tbl_imunisasi');
@@ -613,7 +666,7 @@ class Backend extends CI_Controller
 		redirect('Backend/data_imunisasi');
 	}
 
-	public function data_imunisasi_print($id = null)
+	function data_imunisasi_print($id = null)
 	{
 		if ($id == null) {
 			$data['tbl_imunisasi'] = $this->M_Imunisasi->get_all_imunisasi($id);
@@ -630,7 +683,229 @@ class Backend extends CI_Controller
 		$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
 	}
 
-	public function grafik($balita)
+	function data_jenis_imunisasi()
+	{
+		$config['base_url'] = base_url('Backend/data_jenis_imunisasi');
+		$config['total_rows'] = $this->M_Jenis_Imunisasi->count_all_jenis_imunisasi();
+		$config['per_page'] = 5; // Jumlah data per halaman
+		$config['uri_segment'] = 4; // Biasanya segment ke-3 untuk offset
+		$config['sort'] = 'id_jenis_imunisasi'; // Kolom yang digunakan untuk sorting
+
+		$this->pagination->initialize($config);
+
+		$page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+
+		$offset = ($page > 0) ? ($page - 1) * $config['per_page'] : 0;
+		$data['tbl_jenis_imunisasi'] = $this->M_Jenis_Imunisasi->get_jenis_imunisasi_with_pagination($config['per_page'], $offset, $config["sort"]);
+
+		$data['links']['pagination'] = $this->pagination->create_links();
+		$data['links']['prev_page'] = ($page > 1) ? $page - 1 : 1;
+		$data['links']['next_page'] = ($page < ceil($config['total_rows'] / $config['per_page'])) ? $page + 1 : 1;
+		$data['links']['current_page'] = $page;
+		$data['links']['num_pages'] = ceil($config['total_rows'] / $config['per_page']);
+		$data['total_data'] = $config['total_rows'];
+
+		$data['main_content'] = 'Backend/data_jenis_imunisasi';
+		$this->load->view('Backend/layout/main_layout', $data);
+	}
+
+	function data_jenis_imunisasi_input()
+	{
+		$data['main_content'] = 'Backend/data_jenis_imunisasi_input.php';
+		$this->load->view('Backend/layout/main_layout', $data);
+	}
+
+	function data_jenis_imunisasi_input_aksi()
+	{
+		$this->form_validation->set_rules('nama_jenis_imunisasi', 'Nama Jenis Imunisasi', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+
+		$this->form_validation->set_message('required', '%s wajib diisi');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['main_content'] = 'Backend/data_jenis_imunisasi_input.php';
+			$this->load->view('Backend/layout/main_layout', $data);
+		} else {
+			$id_jenis_imunisasi = $this->M_Jenis_Imunisasi->generate_id_jenis_imunisasi();
+
+			$nama_jenis_imunisasi = $this->input->POST('nama_jenis_imunisasi');
+			$keterangan = $this->input->POST('keterangan');
+
+			$data = array(
+				'id_jenis_imunisasi' => $id_jenis_imunisasi,
+				'nama_jenis_imunisasi' => $nama_jenis_imunisasi,
+				'keterangan' => $keterangan
+			);
+
+			$this->load->model('M_Jenis_Imunisasi');
+			$this->M_Imunisasi->input_data($data, 'tbl_jenis_imunisasi');
+			$this->session->set_flashdata('success', 'Berhasil tambah data jenis imunisasi!');
+			redirect('Backend/data_jenis_imunisasi');
+		}
+	}
+
+
+	function data_jenis_imunisasi_edit($id)
+	{
+		$data['jenis_imunisasi'] = $this->M_Jenis_Imunisasi->get_jenis_imunisasi_by_id($id);
+
+		$data['main_content'] = 'Backend/data_jenis_imunisasi_edit.php';
+		$this->load->view('Backend/layout/main_layout', $data);
+	}
+
+	function data_jenis_imunisasi_edit_aksi()
+	{
+		$this->form_validation->set_rules('nama_jenis_imunisasi', 'Nama Jenis Imunisasi', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+
+		$this->form_validation->set_message('required', '%s wajib diisi');
+
+		if ($this->form_validation->run() == FALSE) {
+			$where = $this->input->POST('id_jenis_imunisasi');
+			$data['jenis_imunisasi'] = $this->M_Jenis_Imunisasi->get_jenis_imunisasi_by_id($where);
+			$data['main_content'] = 'Backend/data_jenis_imunisasi_edit.php';
+			$this->load->view('Backend/layout/main_layout', $data);
+		} else {
+
+			$id = $this->input->POST('id_jenis_imunisasi');
+			$nama_jenis_imunisasi = $this->input->POST('nama_jenis_imunisasi');
+			$keterangan = $this->input->POST('keterangan');
+
+			$data = array(
+				'nama_jenis_imunisasi' => $nama_jenis_imunisasi,
+				'keterangan' => $keterangan
+			);
+
+			$where = array(
+				'id_jenis_imunisasi' => $id
+			);
+
+			$this->load->model('M_Jenis_Imunisasi');
+			$this->M_Jenis_Imunisasi->update_data($where, $data, 'tbl_jenis_imunisasi');
+			$this->session->set_flashdata('success', 'Berhasil ubah data jenis imunisasi!');
+			redirect('Backend/data_jenis_imunisasi');
+		}
+	}
+
+	function data_jenis_imunisasi_delete($id)
+	{
+		$where = array('id_jenis_imunisasi' => $id);
+		$this->M_Pertumbuhan->delete_data($where, 'tbl_jenis_imunisasi');
+		$this->session->set_flashdata('success', 'Berhasil hapus data jenis imunisasi!');
+		redirect('Backend/data_jenis_imunisasi');
+	}
+
+	function data_jenis_imunisasi_print($id = null)
+	{
+		if ($id == null) {
+			$data['tbl_jenis_imunisasi'] = $this->M_Jenis_Imunisasi->get_all_jenis_imunisasi($id);
+		}
+
+		$data['tbl_jenis_imunisasi'] = $this->M_Jenis_Imunisasi->get_all_jenis_imunisasi($id);
+
+		$this->load->library('pdfgenerator');
+		$data['title'] = 'Data Jenis Imunisasi';
+		$file_pdf = $data['title'];
+		$paper = 'A4';
+		$orientation = "portrait";
+		$html = $this->load->view('Backend/data_jenis_imunisasi_print.php', $data, true);
+		$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+	}
+
+
+	function data_print()
+	{
+		$jenis_data  = $this->input->get('jenis_data');
+		$tgl_awal  = $this->input->get('tgl_awal');
+		$tgl_akhir = $this->input->get('tgl_akhir');
+
+		if ($jenis_data == 'tbl_ortu') {
+			if ($tgl_awal && $tgl_akhir) {
+				$awal  = $tgl_awal . ' 00:00:00';
+				$akhir = $tgl_akhir . ' 23:59:59';
+
+				$data[$jenis_data] = $this->M_Ortu->get_by_range($awal, $akhir);
+			} else {
+				$data[$jenis_data] = $this->M_Ortu->get_all();
+			}
+
+			$this->load->library('pdfgenerator');
+			$data['title'] = 'Print Data Orang Tua';
+			$file_pdf = $data['title'];
+			$paper = 'A4';
+			$orientation = "landscape";
+			$html = $this->load->view('Backend/data_ortu_print.php', $data, true);
+			$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+		} else if ($jenis_data == 'tbl_balita') {
+			if ($tgl_awal && $tgl_akhir) {
+				$awal  = $tgl_awal . ' 00:00:00';
+				$akhir = $tgl_akhir . ' 23:59:59';
+
+				$data[$jenis_data] = $this->M_Balita->get_by_range($awal, $akhir);
+			} else {
+				$data[$jenis_data] = $this->M_Balita->get_all();
+			}
+
+			$this->load->library('pdfgenerator');
+			$data['title'] = 'Print Data Balita';
+			$file_pdf = $data['title'];
+			$paper = 'A4';
+			$orientation = "landscape";
+			$html = $this->load->view('Backend/data_balita_print.php', $data, true);
+			$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+		} else if ($jenis_data == 'tbl_pertumbuhan') {
+			if ($tgl_awal && $tgl_akhir) {
+				$data[$jenis_data] = $this->M_Pertumbuhan->get_by_range($tgl_awal, $tgl_akhir);
+			} else {
+				$data[$jenis_data] = $this->M_Pertumbuhan->get_all();
+			}
+
+			$this->load->library('pdfgenerator');
+			$data['title'] = 'Print Data Pertumbuhan';
+			$file_pdf = $data['title'];
+			$paper = 'A4';
+			$orientation = "portrait";
+			$html = $this->load->view('Backend/data_pertumbuhan_print.php', $data, true);
+			$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+		} else if ($jenis_data == 'tbl_imunisasi') {
+			if ($tgl_awal && $tgl_akhir) {
+				$data[$jenis_data] = $this->M_Imunisasi->get_by_range($tgl_awal, $tgl_akhir);
+			} else {
+				$data[$jenis_data] = $this->M_Imunisasi->get_all();
+			}
+
+			$this->load->library('pdfgenerator');
+			$data['title'] = 'Print Data Imunisasi';
+			$file_pdf = $data['title'];
+			$paper = 'A4';
+			$orientation = "portrait";
+			$html = $this->load->view('Backend/data_imunisasi_print.php', $data, true);
+			$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+		} else if ($jenis_data == 'tbl_jenis_imunisasi') {
+			if ($tgl_awal && $tgl_akhir) {
+				$awal  = $tgl_awal . ' 00:00:00';
+				$akhir = $tgl_akhir . ' 23:59:59';
+
+				$data[$jenis_data] = $this->M_Jenis_Imunisasi->get_by_range($tgl_awal, $tgl_akhir);
+			} else {
+				$data[$jenis_data] = $this->M_Jenis_Imunisasi->get_all();
+			}
+
+			$this->load->library('pdfgenerator');
+			$data['title'] = 'Print Data Jenis Imunisasi';
+			$file_pdf = $data['title'];
+			$paper = 'A4';
+			$orientation = "portrait";
+			$html = $this->load->view('Backend/data_jenis_imunisasi_print.php', $data, true);
+			$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+		} else {
+			$data['main_content'] = 'Backend/print_data.php';
+			$this->load->view('Backend/layout/main_layout', $data);
+		}
+	}
+
+
+	function grafik($balita)
 	{
 		$this->load->model('M_Ortu');
 		$data['tbl_ortu'] = $this->M_Ortu->tampil_data()->result();
@@ -640,5 +915,11 @@ class Backend extends CI_Controller
 		$this->load->model('grafik_model');
 		$data['labelnya'] = $this->grafik_model->load_data($balita);
 		$this->load->view('backend/grafik_pertumbuhan.php', $data);
+	}
+
+	function print_data()
+	{
+		$data['main_content'] = 'Backend/print_data.php';
+		$this->load->view('Backend/layout/main_layout', $data);
 	}
 }

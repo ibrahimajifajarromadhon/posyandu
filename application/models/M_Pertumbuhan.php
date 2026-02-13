@@ -2,7 +2,7 @@
 class M_Pertumbuhan extends CI_Model
 {
 
-	public function get_pertumbuhan_with_pagination($limit, $offset, $order_by, $where = [])
+	function get_pertumbuhan_with_pagination($limit, $offset, $order_by, $where = [])
 	{
 		$this->db->select('*');
 		$this->db->from('tbl_pertumbuhan');
@@ -22,7 +22,7 @@ class M_Pertumbuhan extends CI_Model
 		return $query->result();
 	}
 
-	public function get_pertumbuhan_with_pagination_unique($limit, $offset, $order_by, $where = [])
+	function get_pertumbuhan_with_pagination_unique($limit, $offset, $order_by, $where = [])
 	{
 		$this->db->select('
             tbl_pertumbuhan.*,             
@@ -51,7 +51,7 @@ class M_Pertumbuhan extends CI_Model
 		return $query->result();
 	}
 
-	public function get_all_pertumbuhan($id)
+	function get_all_pertumbuhan($id)
 	{
 		if ($id == null) {
 			$this->db->select('*');
@@ -68,12 +68,12 @@ class M_Pertumbuhan extends CI_Model
 		return $query->result();
 	}
 
-	public function count_all_pertumbuhan()
+	function count_all_pertumbuhan()
 	{
 		return $this->db->count_all('tbl_pertumbuhan');
 	}
 
-	public function count_all_pertumbuhan_unique($id_ortu)
+	function count_all_pertumbuhan_unique($id_ortu)
 	{
 		$this->db->select('COUNT(DISTINCT tbl_balita.id_balita) as total_balita_unik');
 		$this->db->from('tbl_pertumbuhan');
@@ -111,5 +111,53 @@ class M_Pertumbuhan extends CI_Model
 		$this->db->select('*');
 		$this->db->from('tbl_pertumbuhan');
 		return $this->db->get()->num_rows();
+	}
+
+	function generate_id_pertumbuhan()
+	{
+		$tahun = date('Y');
+
+		$row = $this->db->query("
+        SELECT MAX(RIGHT(id_pertumbuhan,5)) AS no
+        FROM tbl_pertumbuhan
+        WHERE id_pertumbuhan LIKE 'PTBH{$tahun}%'
+    ")->row();
+
+		return 'PTBH' . $tahun . str_pad(($row->no ?? 0) + 1, 5, '0', STR_PAD_LEFT);
+	}
+
+	function get_all()
+	{
+		return $this->db
+			->select('*')
+			->from('tbl_pertumbuhan')
+			->join('tbl_balita', 'tbl_balita.id_balita = tbl_pertumbuhan.id_balita', 'left')
+			->order_by('tbl_pertumbuhan.tgl_cek', 'DESC')
+			->get()
+			->result();
+	}
+
+
+	function get_by_range($awal, $akhir)
+	{
+		return $this->db
+			->select('*')
+			->from('tbl_pertumbuhan')
+			->join('tbl_balita', 'tbl_balita.id_balita = tbl_pertumbuhan.id_balita', 'left')
+			->where('tbl_pertumbuhan.tgl_cek >=', $awal)
+			->where('tbl_pertumbuhan.tgl_cek <=', $akhir)
+			->order_by('tbl_pertumbuhan.tgl_cek', 'DESC')
+			->get()
+			->result();
+	}
+
+	function get_pertumbuhan_by_id($id)
+	{
+		$this->db->select('*, b.nm_balita');
+		$this->db->from('tbl_pertumbuhan p');
+		$this->db->join('tbl_balita b', 'p.id_balita = b.id_balita');
+		$this->db->where('p.id_pertumbuhan', $id);
+		$query = $this->db->get();
+		return $query->row();
 	}
 }

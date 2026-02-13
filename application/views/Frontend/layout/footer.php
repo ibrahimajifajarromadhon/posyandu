@@ -78,6 +78,48 @@
 <script src="<?php echo base_url() . 'assets/Frontend/js/validator.min.js' ?>"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
 <script src="<?php echo base_url() . 'assets/Frontend/js/scripts.js' ?>"></script> <!-- Custom scripts -->
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- WAJIB jika template memakai easing -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+    $('.kader-carousel').owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: false,
+        dots: true,
+        autoplay: false,
+        smartSpeed: 600,
+        responsive:{
+            0:{ items:1 },
+            576:{ items:2 },
+            768:{ items:3 },
+            992:{ items:3 },
+            1200:{ items:4 }
+        }
+    });
+
+    $('.motivasi-carousel').owlCarousel({
+        items: 1,
+        loop: true,
+        margin: 10,
+        nav: false,
+        dots: true,
+        autoplay: true,
+        autoplayTimeout: 4000,
+        autoplayHoverPause: true,
+        smartSpeed: 800
+    });
+
+});
+
+</script>
 </body>
 
 </html>

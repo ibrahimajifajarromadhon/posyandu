@@ -19,9 +19,11 @@
             <thead>
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">No</th>
-                    <th class="px-4 py-3">Nama Ibu</th>
-                    <th class="px-4 py-3">Nama balita</th>
+                    <th class="px-4 py-3 text-center">No</th>
+                    <th class="px-4 py-3">ID Balita</th>
+                    <th class="px-4 py-3">NIK Balita</th>
+                    <th class="px-4 py-3">Nama Balita</th>
+                    <th class="px-4 py-3">Nama Ortu</th>
                     <th class="px-4 py-3">Tanggal Lahir</th>
                     <th class="px-4 py-3">Jenis Kelamin</th>
                     <th class="px-4 py-3">Berat Badan Lahir</th>
@@ -37,17 +39,23 @@
                     foreach ($tbl_balita as $balita) {
                 ?>
                         <tr class="text-gray-700 dark:text-gray-400">
-                            <td class="px-4 py-3 text-sm">
+                            <td class="px-4 py-3 text-sm text-center">
                                 <?php echo $no++ ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $balita->nm_ibu ?>
+                                <?php echo $balita->id_balita ?>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo $balita->nik_balita ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <?php echo $balita->nm_balita ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $balita->tgl_lahir ?>
+                                <?php echo $balita->nm_ibu ? $balita->nm_ibu : $balita->nm_ayah ?>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo tgl_indo($balita->tgl_lahir); ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <?php echo $balita->jenis_kelamin ?>
@@ -59,7 +67,7 @@
                                 <?php echo $balita->pb_lahir ?> cm
                             </td>
                             <td class="px-4 py-3">
-                                <div class="flex items-center space-x-4 text-sm">
+                                <div class="flex items-center space-x-1 text-sm">
                                     <a
                                         href="<?php echo base_url('Backend/data_balita_edit/' . $balita->id_balita) ?>"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
@@ -73,6 +81,11 @@
                                         aria-label="Delete">
                                         <i class="fa fa-trash fa-lg"></i>
                                     </a>
+                                    <a
+										href="<?php echo base_url() . 'Backend/data_balita_print/' . $balita->id_balita . '' ?>" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+										aria-label="Print" title="Print">
+										<i class="fa fa-print fa-lg"></i>
+									</a>
                                 </div>
                             </td>
                         </tr>

@@ -12,24 +12,29 @@
 
 <body>
     <div class="container">
-        <h2 class="text-center">Data Imunisasi Balita</h2>
+        <h2 class="text-center">Data Orang Tua</h2>
         <table class="table table-bordered">
             <thead>
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3 text-center">No</th>
-                    <th class="px-4 py-3">Nama Balita</th>
-                    <th class="px-4 py-3">Nama Ortu</th>
-                    <th class="px-4 py-3">Tanggal Imunisasi</th>
-                    <th class="px-4 py-3">Jenis Imunisasi</th>
+                    <th class="px-4 py-3">ID Ortu</th>
+                    <th class="px-4 py-3">Nama Ayah</th>
+                    <th class="px-4 py-3">Nama Ibu</th>
+                    <th class="px-4 py-3">No. Handphone</th>
+                    <th class="px-4 py-3">Username</th>
+                    <th class="px-4 py-3">Email</th>
+                    <th class="px-4 py-3">Alamat</th>
+                    <th class="px-4 py-3">Pekerjaan Ayah</th>
+                    <th class="px-4 py-3">Pekerjaan Ibu</th>
                 </tr>
             </thead>
             <tbody
                 class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
-                if (!empty($tbl_imunisasi)) {
+                if (!empty($tbl_ortu)) {
                     $no = 1;
-                    foreach ($tbl_imunisasi as $imunisasi) {
+                    foreach ($tbl_ortu as $ortu) {
                 ?>
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3">
@@ -38,16 +43,31 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $imunisasi->nm_balita ?>
+                                <?php echo !empty($ortu->id_ortu) ? $ortu->id_ortu : "-" ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $imunisasi->nm_ibu ? $imunisasi->nm_ibu : $imunisasi->nm_ayah ?>
+                                <?php echo !empty($ortu->nm_ayah) ? $ortu->nm_ayah : "-" ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo tgl_indo($imunisasi->tgl_imunisasi) ?>
+                                <?php echo !empty($ortu->nm_ibu) ? $ortu->nm_ibu : "-" ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $imunisasi->nama_jenis_imunisasi ?>
+                                <?php echo !empty($ortu->no_hp) ? $ortu->no_hp : "-" ?>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo !empty($ortu->username) ? $ortu->username : "-" ?>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo !empty($ortu->email) ? $ortu->email : "-" ?>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo !empty($ortu->alamat) ? $ortu->alamat : "-" ?>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo !empty($ortu->pekerjaan_ayah) ? $ortu->pekerjaan_ayah : "-" ?>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo !empty($ortu->pekerjaan_ibu) ? $ortu->pekerjaan_ibu : "-" ?>
                             </td>
                         </tr>
                     <?php
@@ -55,7 +75,7 @@
                 } else {
                     ?>
                     <tr class="text-gray-700 dark:text-gray-400">
-                        <td colspan="8" class="px-4 py-3 text-center">Tidak ada data imunisasi.</td>
+                        <td colspan="10" class="px-4 py-3 text-center">Tidak ada data orang tua.</td>
                     </tr>
                 <?php
                 }

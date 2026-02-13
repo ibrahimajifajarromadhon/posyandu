@@ -23,18 +23,7 @@
 				<?php endif; ?>
 				<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $this->uri->segment(2) == '' ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
 					href="<?php echo base_url('Backend'); ?>">
-					<svg
-						class="w-5 h-5"
-						aria-hidden="true"
-						fill="none"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						viewBox="0 0 24 24"
-						stroke="currentColor">
-						<path
-							d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-					</svg>
+					<i class="fa fa-home fa-lg"></i>
 					<span class="ml-4">Dashboard</span>
 				</a>
 			</li>
@@ -53,9 +42,7 @@
 				<?php endif; ?>
 				<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_ortu_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_ortu', 'data_ortu_input', 'data_ortu_input_aksi', 'data_ortu_edit', 'data_ortu_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
 					href="<?php echo base_url('Backend/data_ortu'); ?>">
-					<svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-						<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-					</svg>
+					<i class="fa fa-users fa-lg"></i>
 					<span class="ml-4">Data Orang Tua</span>
 				</a>
 			</li>
@@ -65,15 +52,13 @@
 					<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
 				<?php endif; ?>
 				<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_balita_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_balita', 'data_balita_input', 'data_balita_input_aksi', 'data_balita_edit', 'data_balita_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/data_balita'); ?>">
-					<svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-						<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-					</svg>
+					<i class="fa fa-child fa-lg"></i>
 					<span class="ml-4">Data Balita</span>
 				</a>
 			</li>
 			<li class="relative px-6 py-3">
 				<?php if ($is_active_periksa_group = (
-					$this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi', 'data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi']))): ?>
+					$this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi', 'data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi', 'data_jenis_imunisasi', 'data_jenis_imunisasi_input', 'data_jenis_imunisasi_input_aksi', 'data_jenis_imunisasi_edit', 'data_jenis_imunisasi_edit_aksi']))): ?>
 					<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
 				<?php endif; ?>
 				<button
@@ -81,18 +66,7 @@
 					@click="togglePagesMenu"
 					aria-haspopup="true">
 					<span class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_periksa_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi', 'data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-						<svg
-							class="w-5 h-5"
-							aria-hidden="true"
-							fill="none"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							viewBox="0 0 24 24"
-							stroke="currentColor">
-							<path
-								d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-						</svg>
+						<i class="fa fa-stethoscope fa-lg"></i>
 						<span class="ml-4">Data Periksa</span>
 					</span>
 					<svg
@@ -118,22 +92,41 @@
 						aria-label="submenu">
 						<li
 							class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-							<?php if ($is_active_ortu_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi']))): ?>
+							<?php if ($is_active_pertumbuhan_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi']))): ?>
 								<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
 							<?php endif; ?>
 							<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_pertumbuhan_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/data_pertumbuhan'); ?>">Data Pertumbuhan</a>
 						</li>
 						<li
 							class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-							<?php if ($is_active_ortu_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi']))): ?>
+							<?php if ($is_active_imunisasi_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi']))): ?>
 								<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
 							<?php endif; ?>
 							<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_imunisasi_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/data_imunisasi'); ?>">
 								Data Imunisasi
 							</a>
 						</li>
+						<li
+							class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+							<?php if ($is_active_jenis_imunisasi_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_jenis_imunisasi', 'data_jenis_imunisasi_input', 'data_jenis_imunisasi_input_aksi', 'data_jenis_imunisasi_edit', 'data_jenis_imunisasi_edit_aksi']))): ?>
+								<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+							<?php endif; ?>
+							<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_jenis_imunisasi_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_jenis_imunisasi', 'data_jenis_imunisasi_input', 'data_jenis_imunisasi_input_aksi', 'data_jenis_imunisasi_edit', 'data_jenis_imunisasi_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/data_jenis_imunisasi'); ?>">
+								Data Jenis Imunisasi
+							</a>
+						</li>
 					</ul>
 				</template>
+			</li>
+			<li class="relative px-6 py-3">
+				<?php if ($is_active_print_data = (
+					$this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['print_data']))): ?>
+					<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+				<?php endif; ?>
+				<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_print_data = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['print_data'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/print_data'); ?>">
+					<i class="fa fa-print fa-lg"></i>
+					<span class="ml-4">Print Data</span>
+				</a>
 			</li>
 		</ul>
 	</div>
@@ -203,9 +196,7 @@
 					<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
 				<?php endif; ?>
 				<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_ortu_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_ortu', 'data_ortu_input', 'data_ortu_input_aksi', 'data_ortu_edit', 'data_ortu_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/data_ortu'); ?>">
-					<svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-						<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-					</svg>
+					<i class="fa fa-users fa-lg"></i>
 					<span class="ml-4">Data Orang Tua</span>
 				</a>
 			</li>
@@ -215,9 +206,7 @@
 					<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
 				<?php endif; ?>
 				<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_balita_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_balita', 'data_balita_input', 'data_balita_input_aksi', 'data_balita_edit', 'data_balita_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/data_balita'); ?>">
-					<svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-						<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-					</svg>
+					<i class="fa fa-child fa-lg"></i>
 					<span class="ml-4">Data Balita</span>
 				</a>
 			</li>
@@ -231,18 +220,7 @@
 					@click="togglePagesMenu"
 					aria-haspopup="true">
 					<span class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_periksa_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi', 'data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-						<svg
-							class="w-5 h-5"
-							aria-hidden="true"
-							fill="none"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							viewBox="0 0 24 24"
-							stroke="currentColor">
-							<path
-								d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-						</svg>
+						<i class="fa fa-stethoscope fa-lg"></i>
 						<span class="ml-4">Data Periksa</span>
 					</span>
 					<svg
@@ -268,22 +246,41 @@
 						aria-label="submenu">
 						<li
 							class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-							<?php if ($is_active_ortu_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi']))): ?>
+							<?php if ($is_active_pertumbuhan_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi']))): ?>
 								<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
 							<?php endif; ?>
 							<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_pertumbuhan_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_pertumbuhan', 'data_pertumbuhan_input', 'data_pertumbuhan_input_aksi', 'data_pertumbuhan_edit', 'data_pertumbuhan_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/data_pertumbuhan'); ?>">Data Pertumbuhan</a>
 						</li>
 						<li
 							class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-							<?php if ($is_active_ortu_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi']))): ?>
+							<?php if ($is_active_imunisasi_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi']))): ?>
 								<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
 							<?php endif; ?>
 							<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_imunisasi_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_imunisasi', 'data_imunisasi_input', 'data_imunisasi_input_aksi', 'data_imunisasi_edit', 'data_imunisasi_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/data_imunisasi'); ?>">
 								Data Imunisasi
 							</a>
 						</li>
+						<li
+							class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+							<?php if ($is_active_jenis_imunisasi_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_jenis_imunisasi', 'data_jenis_imunisasi_input', 'data_jenis_imunisasi_input_aksi', 'data_jenis_imunisasi_edit', 'data_jenis_imunisasi_edit_aksi']))): ?>
+								<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+							<?php endif; ?>
+							<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_jenis_imunisasi_group = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['data_jenis_imunisasi', 'data_jenis_imunisasi_input', 'data_jenis_imunisasi_input_aksi', 'data_jenis_imunisasi_edit', 'data_jenis_imunisasi_edit_aksi'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/data_jenis_imunisasi'); ?>">
+								Data Jenis Imunisasi
+							</a>
+						</li>
 					</ul>
 				</template>
+			<li class="relative px-6 py-3">
+				<?php if ($is_active_print_data = (
+					$this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['print_data']))): ?>
+					<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+				<?php endif; ?>
+				<a class="inline-flex items-center w-full text-sm font-semibold <?php echo $is_active_print_data = ($this->uri->segment(1) === 'Backend' && in_array($this->uri->segment(2), ['print_data'])) ? 'text-gray-800 dark:hover:text-gray-100 dark:text-gray-100' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="<?php echo base_url('Backend/print_data'); ?>">
+					<i class="fa fa-print fa-lg"></i>
+					<span class="ml-4">Print Data</span>
+				</a>
+			</li>
 			</li>
 		</ul>
 	</div>

@@ -22,7 +22,7 @@
             <?php
             foreach ($tbl_balita as $balita) {
             ?>
-              <option value="<?php echo $balita->id_balita ?>" <?php echo set_value('balita') ==  $balita->id_balita  ? 'selected' : null ?>><?php echo $balita->nm_balita ?></option>
+              <option value="<?php echo $balita->id_balita ?>" <?php echo set_value('balita') ==  $balita->id_balita  ? 'selected' : null ?>>[<?= $balita->id_balita ?>] <?php echo $balita->nm_balita ?></option>
             <?php } ?>
           </select>
           <span class="text-sm text-red-600"><?= form_error('balita') ?></span>
@@ -44,7 +44,8 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="tgl_imunisasi">Tanggal Imunisasi *</label>
-          <input type="date" id="tgl_imunisasi" name="tgl_imunisasi" value="<?php echo set_value('tgl_imunisasi') ?>" class="form-control" placeholder="Masukkan Tanggal Imunisasi">
+          <input type="text" class="form-control" value="<?= tgl_indo(date('Y-m-d')); ?>" disabled>
+          <input type="hidden" id="tgl_imunisasi" name="tgl_imunisasi" value="<?= date('Y-m-d'); ?>">
           <span class="text-sm text-red-600"><?= form_error('tgl_imunisasi') ?></span>
         </div>
       </div>
@@ -54,7 +55,14 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="jenis_imunisasi">Jenis Imunisasi *</label>
-          <input type="text" id="jenis_imunisasi" name="jenis_imunisasi" value="<?php echo set_value('jenis_imunisasi') ?>" class="form-control" placeholder="Masukkan Jenis Imunisasi">
+          <select name="jenis_imunisasi" class="form-control" id="jenis-imunisasi">
+            <option disabled selected>~Pilih Jenis Imunisasi~</option>
+            <?php
+            foreach ($tbl_jenis_imunisasi as $imunisasi) {
+            ?>
+              <option value="<?php echo $imunisasi->id_jenis_imunisasi ?>" <?php echo set_value('jenis_imunisasi') ==  $imunisasi->id_jenis_imunisasi  ? 'selected' : null ?>>[<?= $imunisasi->id_jenis_imunisasi ?>] <?php echo $imunisasi->nama_jenis_imunisasi ?></option>
+            <?php } ?>
+          </select>
           <span class="text-sm text-red-600"><?= form_error('jenis_imunisasi') ?></span>
         </div>
       </div>
@@ -79,7 +87,7 @@
     foreach ($tbl_balita as $balita) {
     ?>
       if (idBalita == '<?php echo $balita->id_balita ?>') {
-        nmIbu = '<?php echo $balita->nm_ibu ?>';
+        nmIbu = '[<?= $balita->id_ortu ?>] <?php echo $balita->nm_ibu ?>';
         document.getElementById('nm-ibu-input').value = '<?php echo $balita->id_ortu ?>';
       }
     <?php } ?>

@@ -16,56 +16,6 @@ class Login extends CI_Controller
 		$this->load->view('Backend/login.php');
 	}
 
-	function register()
-	{
-		$this->load->view('Backend/register.php');
-	}
-
-	function register_action()
-	{
-		$this->form_validation->set_rules('nm_ayah', 'Nama Ayah', 'required');
-		$this->form_validation->set_rules('nm_ibu', 'Nama Ibu', 'required');
-		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[tbl_ortu.username]');
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-		$this->form_validation->set_rules(
-			'passconf',
-			'Konfirmasi Password',
-			'required|matches[password]',
-			array('matches' => '%s Tidak Sesuai dengan Password')
-		);
-		$this->form_validation->set_rules('email', 'Email', 'required');
-
-		$this->form_validation->set_message('required', '%s wajib diisi');
-		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
-		$this->form_validation->set_message('is_unique', '{field} telah digunakan silahkan ganti');
-		$this->form_validation->set_message('req_min', '{field} harus menggunakan @');
-
-		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('Backend/register.php');
-		} else {
-
-			$nm_ayah = $this->input->POST('nm_ayah');
-			$nm_ibu = $this->input->POST('nm_ibu');
-			$user = $this->input->POST('username');
-			$pass = $this->input->POST('password');
-			$email = $this->input->POST('email');
-
-			$hashed_password = password_hash($pass, PASSWORD_BCRYPT);
-
-			$data = array(
-				'nm_ayah' => $nm_ayah,
-				'nm_ibu' => $nm_ibu,
-				'username' => $user,
-				'password' => $hashed_password,
-				'email' => $email,
-			);
-
-			$this->M_Ortu->input_data($data, 'tbl_ortu');
-			$this->session->set_flashdata('success', 'Berhasil daftar, silahkan login!');
-			redirect('Login');
-		}
-	}
-
 	function auth()
 	{
 		$this->form_validation->set_rules('username', 'Username', 'required');

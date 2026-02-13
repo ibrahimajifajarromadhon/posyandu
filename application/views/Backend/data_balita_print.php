@@ -12,42 +12,52 @@
 
 <body>
     <div class="container">
-        <h2 class="text-center">Data Imunisasi Balita</h2>
+        <h2 class="text-center">Data Balita</h2>
         <table class="table table-bordered">
             <thead>
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3 text-center">No</th>
+                    <th class="px-4 py-3">ID Balita</th>
                     <th class="px-4 py-3">Nama Balita</th>
                     <th class="px-4 py-3">Nama Ortu</th>
-                    <th class="px-4 py-3">Tanggal Imunisasi</th>
-                    <th class="px-4 py-3">Jenis Imunisasi</th>
+                    <th class="px-4 py-3">Tanggal Lahir</th>
+                    <th class="px-4 py-3">Jenis Kelamin</th>
+                    <th class="px-4 py-3">BB Lahir</th>
+                    <th class="px-4 py-3">PB Lahir</th>
                 </tr>
             </thead>
             <tbody
                 class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
-                if (!empty($tbl_imunisasi)) {
+                if (!empty($tbl_balita)) {
                     $no = 1;
-                    foreach ($tbl_imunisasi as $imunisasi) {
+                    foreach ($tbl_balita as $balita) {
                 ?>
                         <tr class="text-gray-700 dark:text-gray-400">
-                            <td class="px-4 py-3">
-                                <div class="text-center">
-                                    <p class="font-semigrey"><?php echo $no++ ?></p>
-                                </div>
+                            <td class="px-4 py-3 text-sm text-center">
+                                <?php echo $no++ ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $imunisasi->nm_balita ?>
+                                <?php echo $balita->id_balita ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $imunisasi->nm_ibu ? $imunisasi->nm_ibu : $imunisasi->nm_ayah ?>
+                                <?php echo $balita->nm_balita ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo tgl_indo($imunisasi->tgl_imunisasi) ?>
+                                <?php echo $balita->nm_ibu ? $balita->nm_ibu : $balita->nm_ayah ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $imunisasi->nama_jenis_imunisasi ?>
+                                <?php echo tgl_indo($balita->tgl_lahir); ?>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo $balita->jenis_kelamin ?>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo $balita->bb_lahir ?> kg
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <?php echo $balita->pb_lahir ?> cm
                             </td>
                         </tr>
                     <?php
@@ -55,7 +65,7 @@
                 } else {
                     ?>
                     <tr class="text-gray-700 dark:text-gray-400">
-                        <td colspan="8" class="px-4 py-3 text-center">Tidak ada data imunisasi.</td>
+                        <td colspan="8" class="px-4 py-3 text-center">Tidak ada data balita.</td>
                     </tr>
                 <?php
                 }

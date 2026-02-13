@@ -12,24 +12,23 @@
 
 <body>
     <div class="container">
-        <h2 class="text-center">Data Imunisasi Balita</h2>
+        <h2 class="text-center">Data Jenis Imunisasi</h2>
         <table class="table table-bordered">
             <thead>
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3 text-center">No</th>
-                    <th class="px-4 py-3">Nama Balita</th>
-                    <th class="px-4 py-3">Nama Ortu</th>
-                    <th class="px-4 py-3">Tanggal Imunisasi</th>
-                    <th class="px-4 py-3">Jenis Imunisasi</th>
+                    <th class="px-4 py-3">ID Jenis Imunisasi</th>
+                    <th class="px-4 py-3">Nama Jenis Imunisasi</th>
+                    <th class="px-4 py-3">Keterangan</th>
                 </tr>
             </thead>
             <tbody
                 class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <?php
-                if (!empty($tbl_imunisasi)) {
+                if (!empty($tbl_jenis_imunisasi)) {
                     $no = 1;
-                    foreach ($tbl_imunisasi as $imunisasi) {
+                    foreach ($tbl_jenis_imunisasi as $jenis) {
                 ?>
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3">
@@ -38,16 +37,13 @@
                                 </div>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $imunisasi->nm_balita ?>
+                                <?php echo $jenis->id_jenis_imunisasi ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo $imunisasi->nm_ibu ? $imunisasi->nm_ibu : $imunisasi->nm_ayah ?>
+                                <?php echo $jenis->nama_jenis_imunisasi ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                <?php echo tgl_indo($imunisasi->tgl_imunisasi) ?>
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                <?php echo $imunisasi->nama_jenis_imunisasi ?>
+                                <?php echo $jenis->keterangan ?>
                             </td>
                         </tr>
                     <?php
@@ -55,7 +51,7 @@
                 } else {
                     ?>
                     <tr class="text-gray-700 dark:text-gray-400">
-                        <td colspan="8" class="px-4 py-3 text-center">Tidak ada data imunisasi.</td>
+                        <td colspan="8" class="px-4 py-3 text-center">Tidak ada data jenis imunisasi.</td>
                     </tr>
                 <?php
                 }

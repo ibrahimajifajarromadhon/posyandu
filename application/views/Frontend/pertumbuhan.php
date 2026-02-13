@@ -32,7 +32,7 @@
     </h2>
 
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
-        <div class="w-full overflow-x-auto mt-16">
+        <div class="w-full overflow-x-auto mt-16 table-responsive">
             <table class="table text-center">
                 <thead>
                     <tr
@@ -60,14 +60,13 @@
                                     <?php echo $pertumbuhan->nm_balita ?>
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    <?php
-                                    $date = new DateTime($pertumbuhan->tgl_lahir);
-                                    echo $date->format('d F Y');
+                                    <?=
+                                    tgl_indo($pertumbuhan->tgl_lahir);
                                     ?>
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     <a href="<?php echo base_url() . 'Frontend/grafik/' . $pertumbuhan->id_balita ?>" title="Lihat Grafik Pertumbuhan Balita">
-                                        <i style="font-size: 20px;" class="fas fa-chart-line"></i>
+                                        <i class="fa fa-chart-bar fa-lg"></i>
                                     </a>
                                 </td>
 

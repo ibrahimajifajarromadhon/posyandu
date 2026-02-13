@@ -1,9 +1,9 @@
 <?php
 class M_Balita extends CI_Model
 {
-	public function get_balita_with_pagination($limit, $offset, $order_by, $where = [])
+	function get_balita_with_pagination($limit, $offset, $order_by, $where = [])
 	{
-		$this->db->select('tbl_balita.*, tbl_ortu.nm_ibu');
+		$this->db->select('tbl_balita.*, tbl_ortu.nm_ibu, tbl_ortu.nm_ayah');
 		$this->db->from('tbl_balita');
 		$this->db->join('tbl_ortu', 'tbl_ortu.id_ortu = tbl_balita.id_ortu', 'left');
 
@@ -21,7 +21,7 @@ class M_Balita extends CI_Model
 		return $query->result();
 	}
 
-	public function count_all_balita()
+	function count_all_balita()
 	{
 		return $this->db->count_all('tbl_balita');
 	}
@@ -62,5 +62,53 @@ class M_Balita extends CI_Model
 		$this->db->select('*');
 		$this->db->from('tbl_balita');
 		return $this->db->get()->num_rows();
+	}
+
+	function generate_id_balita()
+	{
+		$tahun = date('Y');
+
+		$row = $this->db->query("
+        SELECT MAX(RIGHT(id_balita,5)) AS no
+        FROM tbl_balita
+        WHERE id_balita LIKE 'BLTA{$tahun}%'
+    ")->row();
+
+		return 'BLTA' . $tahun . str_pad(($row->no ?? 0) + 1, 5, '0', STR_PAD_LEFT);
+	}
+
+	function get_all_balita($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tbl_balita');
+		$this->db->join('tbl_ortu', 'tbl_ortu.id_ortu=tbl_balita.id_ortu', 'left');
+		$this->db->where('tbl_balita.id_balita', $id);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_all()
+	{
+		return $this->db
+			->select('*')
+			->from('tbl_balita')
+			->join('tbl_ortu', 'tbl_ortu.id_ortu = tbl_balita.id_ortu', 'left')
+			->order_by('tbl_balita.tgl_create', 'DESC')
+			->get()
+			->result();
+	}
+
+
+	function get_by_range($awal, $akhir)
+	{
+		return $this->db
+			->select('*')
+			->from('tbl_balita')
+			->join('tbl_ortu', 'tbl_ortu.id_ortu = tbl_balita.id_ortu', 'left')
+			->where('tbl_balita.tgl_create >=', $awal)
+			->where('tbl_balita.tgl_create <=', $akhir)
+			->order_by('tbl_balita.tgl_create', 'DESC')
+			->get()
+			->result();
 	}
 }

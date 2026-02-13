@@ -19,11 +19,11 @@
         <div class="form-group">
           <label for="id_ortu">Nama Ibu *</label>
           <select name="id_ortu" id="id_ortu" class="form-control">
-            <option disabled selected>~Pilih Ibu</option>
+            <option disabled selected>~Pilih Ibu~</option>
             <?php
             foreach ($tbl_ortu as $ortu) {
             ?>
-              <option value="<?php echo $ortu->id_ortu ?>" <?php echo set_value('id_ortu') ==  $ortu->id_ortu  ? 'selected' : null ?>><?php echo $ortu->nm_ibu ?></option>
+              <option value="<?php echo $ortu->id_ortu ?>" <?php echo set_value('id_ortu') ==  $ortu->id_ortu  ? 'selected' : null ?>>[<?= $ortu->id_ortu ?>] <?php echo $ortu->nm_ibu ?></option>
             <?php } ?>
           </select>
           <span class="text-sm text-red-600"><?= form_error('id_ortu') ?></span>
@@ -34,8 +34,21 @@
     <div class="form-row">
       <div class="col-md-12">
         <div class="form-group">
+          <label for="nik_balita">NIK *</label>
+          <input type="text" id="nik_balita" name="nik_balita"
+            value="<?php echo set_value('nik_balita') ?>"
+            class="form-control"
+            placeholder="Contoh : 3276010101010001" pattern="\d{16}" maxlength="16">
+          <span class="text-sm text-red-600"><?= form_error('nik_balita') ?></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-12">
+        <div class="form-group">
           <label for="nm_balita">Nama Balita *</label>
-          <input type="text" id="nm_balita" name="nm_balita" value="<?php echo set_value('nm_balita') ?>" class="form-control" placeholder="Masukkan Nama Balita">
+          <input type="text" id="nm_balita" name="nm_balita" value="<?php echo set_value('nm_balita') ?>" class="form-control" placeholder="Contoh : Royan">
           <span class="text-sm text-red-600"><?= form_error('nm_balita') ?></span>
         </div>
       </div>
@@ -45,7 +58,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="tgl_lahir">Tanggal Lahir *</label>
-          <input type="date" id="tgl_lahir" name="tgl_lahir" value="<?php echo set_value('tgl_lahir') ?>" class="form-control" placeholder="Masukkan Tanggal Lahir">
+          <input type="date" id="tgl_lahir" name="tgl_lahir" value="<?php echo set_value('tgl_lahir') ?>" class="form-control">
           <span class="text-sm text-red-600"><?= form_error('tgl_lahir') ?></span>
         </div>
       </div>
@@ -70,15 +83,15 @@
     <div class="form-row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="bb_lahir">Berat Badan Lahir *</label>
-          <input type="number" id="bb_lahir" name="bb_lahir" value="<?php echo set_value('bb_lahir') ?>" step='any' class="form-control" placeholder="0,0 kg">
+          <label for="bb_lahir">Berat Badan Lahir (Kg) *</label>
+          <input type="number" id="bb_lahir" name="bb_lahir" value="<?php echo set_value('bb_lahir') ?>" step='any' class="form-control" placeholder="Contoh : 0,0 Kg">
           <span class="text-sm text-red-600"><?= form_error('bb_lahir') ?></span>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="pb_lahir">Panjang Badan Lahir *</label>
-          <input type="number" id="pb_lahir" name="pb_lahir" value="<?php echo set_value('pb_lahir') ?>" step='any' class="form-control" placeholder="00 cm">
+          <label for="pb_lahir">Panjang Badan Lahir (Cm) *</label>
+          <input type="number" id="pb_lahir" name="pb_lahir" value="<?php echo set_value('pb_lahir') ?>" step='any' class="form-control" placeholder="Contoh : 00 Cm">
           <span class="text-sm text-red-600"><?= form_error('pb_lahir') ?></span>
         </div>
       </div>

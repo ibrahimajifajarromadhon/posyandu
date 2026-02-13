@@ -63,13 +63,6 @@
 								Login
 							</button>
 
-							<hr class="my-8" />
-
-							<p class="mt-1">Belum punya akun?
-								<a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href="<?php echo base_url() . 'Login/register' ?>">
-									Register
-								</a>
-							</p>
 						</form>
 					</div>
 				</div>
