@@ -22,7 +22,7 @@
           <div class="form-group">
             <label for="balita">Nama Balita</label>
             <input type="hidden" name="balita" value="<?php echo $pertumbuhan->id_balita ?>">
-            <input type="text" id="balita" name="balita" class="form-control" value="[<?= $pertumbuhan->id_balita ?>] <?php echo $pertumbuhan->nm_balita ?>" disabled>
+            <input type="text" id="balita" name="balita" class="form-control" value="[<?= $pertumbuhan->id_balita ?>] | [<?= $pertumbuhan->nik_balita ?>] <?php echo $pertumbuhan->nm_balita ?>" disabled>
             <span class="text-sm text-red-600"><?= form_error('balita') ?></span>
           </div>
         </div>

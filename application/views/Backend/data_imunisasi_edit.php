@@ -22,7 +22,7 @@
         <div class="form-group">
           <label for="nm_balita">Nama Balita</label>
           <input type="hidden" name="nm_balita" value="<?php echo $imunisasi->id_balita ?>">
-          <input type="text" id="nm_balita" name="nm_balita" class="form-control" value="[<?= $imunisasi->id_balita ?>] <?php echo $imunisasi->nm_balita ?>" disabled>
+          <input type="text" id="nm_balita" name="nm_balita" class="form-control" value="[<?= $imunisasi->id_balita ?>] | [<?= $imunisasi->nik_balita ?>] <?php echo $imunisasi->nm_balita ?>" disabled>
         </div>
       </div>
     </div>

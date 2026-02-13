@@ -22,7 +22,7 @@
             <?php
             foreach ($tbl_balita as $balita) {
             ?>
-              <option value="<?php echo $balita->id_balita ?>" <?php echo set_value('balita') ==  $balita->id_balita  ? 'selected' : null ?>>[<?= $balita->id_balita ?>] <?php echo $balita->nm_balita ?></option>
+              <option value="<?php echo $balita->id_balita ?>" <?php echo set_value('balita') ==  $balita->id_balita  ? 'selected' : null ?>>[<?= $balita->id_balita ?>] | [<?= $balita->nik_balita ?>] <?php echo $balita->nm_balita ?></option>
             <?php } ?>
           </select>
           <span class="text-sm text-red-600"><?= form_error('balita') ?></span>
