@@ -31,7 +31,7 @@
       </div>
       <div class="col-md-12">
         <div class="form-group">
-          <label for="usia_balita">Usia (Bulan/Tahun) *</label>
+          <label for="usia_balita">Usia (Bulan) *</label>
           <!-- <input type="text" id="usia" name="usia" step='any' value="<?php echo set_value('usia') ?>" class="form-control" placeholder="Contoh : 1 Tahun 5 Bulan (18 Bulan)"> -->
           <input type="hidden" name="usia" class="form-control" id="usia">
           <input type="text" class="form-control" id="usia_balita" disabled>
@@ -91,6 +91,7 @@
 </div>
 
 <script>
+
   function getUsia(id) {
     var tgl_lahir = '';
     var tgl_cek = document.getElementById('tgl_cek').value;
@@ -105,21 +106,17 @@
       var lahir = new Date(tgl_lahir);
       var cek = new Date(tgl_cek);
 
-      var tahun = cek.getFullYear() - lahir.getFullYear();
-      var bulan = cek.getMonth() - lahir.getMonth();
-      var hari = cek.getDate() - lahir.getDate();
+      var totalBulan = (cek.getFullYear() - lahir.getFullYear()) * 12 +
+        (cek.getMonth() - lahir.getMonth());
 
-      if (hari < 0) {
-        bulan -= 1;
-      }
-      if (bulan < 0) {
-        tahun -= 1;
-        bulan += 12;
+      // koreksi jika tanggal cek < tanggal lahir (dalam bulan berjalan)
+      if (cek.getDate() < lahir.getDate()) {
+        totalBulan--;
       }
 
-      var totalBulan = tahun * 12 + bulan;
+      if (totalBulan < 0) totalBulan = 0;
 
-      var usiaText = tahun + " Tahun " + bulan + " Bulan (" + totalBulan + " Bulan)";
+      var usiaText = totalBulan + " Bulan";
 
       document.getElementById('usia').value = usiaText;
       document.getElementById('usia_balita').value = usiaText;

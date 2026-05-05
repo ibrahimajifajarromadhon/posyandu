@@ -1,0 +1,461 @@
+.accordion-button {
+  font-weight: 500;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #198754;
+  color: #fff;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.kader-carousel .item {
+  padding: 10px;
+}
+
+.kader-box img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.motivasi-section {
+  background: #2ea6be;
+  padding: 80px 0;
+  color: #ffffff;
+}
+
+.motivasi-text {
+  font-size: 22px;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  line-height: 1.6;
+}
+
+.motivasi-author {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.motivasi-carousel .owl-dots {
+  margin-top: 30px;
+}
+
+.motivasi-carousel .owl-dot span {
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  background: rgba(255, 255, 255, 0.4);
+  display: block;
+  border-radius: 50%;
+}
+
+.motivasi-carousel .owl-dot.active span {
+  background: #ffffff;
+}
+
+.about-section h4 {
+  border-left: 5px solid #198754;
+  padding-left: 10px;
+}
+
+.about-section .card {
+  border: none;
+  border-radius: 8px;
+}
+
+.program-section {
+  background: #f8f9fa;
+}
+
+.program-card {
+  background: #ffffff;
+  padding: 30px 20px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon-box {
+  font-size: 40px;
+  color: #198754;
+}
+
+.imunisasi-section {
+  background: #ffffff;
+}
+
+.imun-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 20px;
+  border-radius: 12px;
+
+  border: 1px solid rgba(25, 135, 84, 0.3);
+  background-color: #fff;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.3s ease;
+}
+
+.imun-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.imun-card p {
+  flex-grow: 1;
+}
+
+.imun-icon {
+  font-size: 42px;
+  color: #198754;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.img-small {
+  height: 200px;
+}
+
+.img-medium {
+  height: 300px;
+}
+
+.img-large {
+  height: 100%;
+}
+
+.gap-custom {
+  gap: 20px;
+}
+
+.kegiatan-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.kegiatan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.kegiatan-card img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.badge-kegiatan {
+  display: inline-block;
+  font-size: 12px;
+  background: #e6f4ff;
+  color: #0d6efd;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.card-kegiatan {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #6c757d;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.card-kegiatan::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #0d6efd;
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* Title biar konsisten */
+.section-title {
+  font-weight: 600;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Item */
+.fasilitas-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.25s ease;
+}
+
+/* Hover effect */
+.fasilitas-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon */
+.fasilitas-item i {
+  font-size: 20px;
+  color: #0d6efd;
+  background: #e7f1ff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Text */
+.fasilitas-item span {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Section */
+.layanan-section h4 {
+  font-size: 24px;
+  position: relative;
+}
+
+/* Card */
+.layanan-card {
+  border: none;
+  border-radius: 16px;
+  padding: 10px;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.layanan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon */
+.icon-box {
+  width: 50px;
+  height: 50px;
+  background: #e7f1ff;
+  color: #0d6efd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+/* Title */
+.layanan-card .card-title {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+/* Text */
+.layanan-card .card-text {
+  font-size: 14px;
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+.card-bagan {
+  /* background: #fff; */
+  border-radius: 16px;
+  /* box-shadow: 0 4px 24px rgba(0,0,0,0.08); */
+  padding: 40px 32px 48px;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.card-bagan h4 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 36px;
+  letter-spacing: 0.3px;
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Node styles */
+.node-utama rect {
+  fill: #1a73e8;
+  stroke: #1558b0;
+  stroke-width: 1;
+  rx: 10;
+}
+
+.node-utama .title {
+  fill: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.node-utama .sub {
+  fill: #cce0ff;
+  font-size: 12px;
+}
+
+.node-biasa rect {
+  fill: #fff;
+  stroke: #c5cae9;
+  stroke-width: 1.2;
+}
+
+.node-biasa .title {
+  fill: #1a237e;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.node-biasa .sub {
+  fill: #5c6bc0;
+  font-size: 11.5px;
+}
+
+.connector {
+  stroke: #9fa8da;
+  stroke-width: 1.2;
+  fill: none;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gallery-grid a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.gallery-grid a img:hover {
+  transform: scale(1.02);
+  opacity: 0.88;
+}
+
+/* Kolom kiri: foto-1 (landscape), foto-2 (landscape), foto-3~5 (potrait) */
+.g-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.g-left a:nth-child(1) img {
+  height: 260px;
+}
+
+/* landscape */
+.g-left a:nth-child(2) img {
+  height: 260px;
+}
+
+/* landscape */
+.g-left a:nth-child(3) img {
+  height: 660px;
+}
+
+/* potrait */
+.g-left a:nth-child(4) img {
+  height: 660px;
+}
+
+/* potrait */
+.g-left a:nth-child(5) img {
+  height: 660px;
+}
+
+/* potrait */
+
+/* Kolom tengah: foto-6~10 semua potrait */
+.g-center {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.g-center a img {
+  height: 500px;
+}
+
+/* potrait, 5 x 212 + 4x12 = 1108 */
+
+/* Kolom kanan: foto-11~15 semua potrait */
+.g-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.g-right a img {
+  height: 500px;
+}
+
+/* potrait */
+
+.fancybox__image {
+  max-width: 90vw !important;
+  max-height: 80vh !important;
+  object-fit: contain !important;
+}
+
+.fancybox__caption {
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 15px;
+  color: #fff;
+}
+
+.fancybox__caption strong {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 4px;
+  color: #fff;
+}

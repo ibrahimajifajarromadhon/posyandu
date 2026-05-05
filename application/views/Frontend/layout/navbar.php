@@ -34,6 +34,9 @@
 					<a class="nav-link page-scroll" href="<?php echo base_url() . 'Frontend/about' ?>">ABOUT</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link page-scroll" href="<?php echo base_url() . 'Frontend/gallery' ?>">GALLERY</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link page-scroll" href="<?php echo base_url() . 'Frontend/pertumbuhan' ?>">PERTUMBUHAN</a>
 				</li>
 				<li class="nav-item">

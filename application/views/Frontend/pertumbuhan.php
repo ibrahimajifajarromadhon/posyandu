@@ -66,7 +66,7 @@
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     <a href="<?php echo base_url() . 'Frontend/grafik/' . $pertumbuhan->id_balita ?>" title="Lihat Grafik Pertumbuhan Balita">
-                                        <i class="fa fa-chart-bar fa-lg"></i>
+                                        Lihat Grafik
                                     </a>
                                 </td>
 

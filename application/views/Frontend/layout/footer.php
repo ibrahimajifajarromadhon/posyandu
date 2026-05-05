@@ -87,38 +87,51 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <script>
-$(document).ready(function(){
+    $(document).ready(function() {
 
-    $('.kader-carousel').owlCarousel({
-        loop: true,
-        margin: 20,
-        nav: false,
-        dots: true,
-        autoplay: false,
-        smartSpeed: 600,
-        responsive:{
-            0:{ items:1 },
-            576:{ items:2 },
-            768:{ items:3 },
-            992:{ items:3 },
-            1200:{ items:4 }
-        }
+        $('.kader-carousel').owlCarousel({
+            loop: true,
+            margin: 20,
+            nav: false,
+            dots: true,
+            autoplay: false,
+            smartSpeed: 600,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                576: {
+                    items: 2
+                },
+                768: {
+                    items: 3
+                },
+                992: {
+                    items: 3
+                },
+                1200: {
+                    items: 4
+                }
+            }
+        });
+
+        $('.motivasi-carousel').owlCarousel({
+            items: 1,
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause: true,
+            smartSpeed: 800
+        });
+
     });
 
-    $('.motivasi-carousel').owlCarousel({
-        items: 1,
-        loop: true,
-        margin: 10,
-        nav: false,
-        dots: true,
-        autoplay: true,
-        autoplayTimeout: 4000,
-        autoplayHoverPause: true,
-        smartSpeed: 800
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        animated: true
     });
-
-});
-
 </script>
 </body>
 

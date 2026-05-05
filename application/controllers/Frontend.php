@@ -34,6 +34,12 @@ class Frontend extends CI_Controller {
 		$this->load->view('Frontend/layout/main_layout', $data);
 	}
 
+	public function gallery()
+	{
+		$data['main_content'] = 'Frontend/gallery.php';
+		$this->load->view('Frontend/layout/main_layout', $data);
+	}
+
 	public function pertumbuhan(){
 		$where = $this->session->userdata('ses_id_ortu');
 		$where_condition = ['tbl_ortu.id_ortu' => $where];

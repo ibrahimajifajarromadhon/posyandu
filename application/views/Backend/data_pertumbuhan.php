@@ -25,7 +25,7 @@
 					<th class="px-4 py-3">ID Pertumbuhan</th>
 					<th class="px-4 py-3">Nama Balita</th>
 					<th class="px-4 py-3">Tanggal Cek</th>
-					<th class="px-4 py-3">Usia (Bulan/Tahun)</th>
+					<th class="px-4 py-3">Usia (Bulan)</th>
 					<th class="px-4 py-3">Berat Badan (Kg)</th>
 					<th class="px-4 py-3">Tinggi Badan (Cm)</th>
 					<th class="px-4 py-3">Lingkar Kepala (Cm)</th>
