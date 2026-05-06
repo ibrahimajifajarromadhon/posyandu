@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2026 at 12:26 PM
+-- Generation Time: May 06, 2026 at 12:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -90,8 +90,11 @@ CREATE TABLE `tbl_jenis_imunisasi` (
 --
 
 INSERT INTO `tbl_jenis_imunisasi` (`id`, `id_jenis_imunisasi`, `nama_jenis_imunisasi`, `keterangan`, `tgl_create`) VALUES
-(1, 'JNSI202600001', 'Polio', 'Mencegah kelumpuhan', '2026-02-11 11:13:09'),
-(3, 'JNSI202600002', 'Hepatitis B', 'Mencegah Hepatitis B', '2026-02-11 11:30:13');
+(1, 'JNSI202600001', 'Polio', 'Mencegah Kelumpuhan', '2026-05-04 10:37:08'),
+(3, 'JNSI202600002', 'Hepatitis B', 'Mencegah Hepatitis B', '2026-02-11 11:30:13'),
+(4, 'JNSI202600003', 'Tuberkulosis (TBC)', 'Mencegah Tuberkulosis (TBC)\r\n', '2026-05-04 10:37:40'),
+(5, 'JNSI202600004', 'DPT-HB-HIB', 'Mencegah Difteri, Pertusis (Batuk Rejan), Tetanus, Hepatitis B, dan Radang Otak (HIB)\r\n', '2026-05-04 10:38:17'),
+(6, 'JNSI202600005', 'Campak/MR', 'Mencegah Campak dan Rubella', '2026-05-04 10:38:43');
 
 -- --------------------------------------------------------
 
@@ -166,10 +169,11 @@ CREATE TABLE `tbl_pertumbuhan` (
 --
 
 INSERT INTO `tbl_pertumbuhan` (`id`, `id_pertumbuhan`, `id_balita`, `tgl_cek`, `usia`, `berat_badan`, `tinggi_badan`, `lingkar_kepala`, `lingkar_lengan`) VALUES
-(1, 'PTBH202600001', 'BLTA202600001', '2026-02-09', '1 Tahun', 5, 80, 50, 50),
-(2, 'PTBH202600002', 'BLTA202600001', '2026-02-11', '1 Tahun 8 Bulan', 10, 100, 100, 100),
-(3, 'PTBH202600003', 'BLTA202600001', '2026-02-11', '5 Tahun 0 Bulan (60 Bulan)', 50, 100, 50, 50),
-(4, 'PTBH202600004', 'BLTA202600001', '2026-02-11', '5 Tahun 0 Bulan (60 Bulan)', 10, 10, 10, 10);
+(1, 'PTBH202600001', 'BLTA202600001', '2026-02-09', '12 Bulan', 5, 80, 50, 50),
+(2, 'PTBH202600002', 'BLTA202600001', '2026-02-11', '20 Bulan', 10, 100, 100, 100),
+(3, 'PTBH202600003', 'BLTA202600001', '2026-02-11', '60 Bulan', 50, 100, 50, 50),
+(4, 'PTBH202600004', 'BLTA202600001', '2026-02-11', '60 Bulan', 10, 10, 10, 10),
+(5, 'PTBH202600005', 'BLTA202600001', '2026-05-04', '63 Bulan', 1, 1, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -231,7 +235,7 @@ ALTER TABLE `tbl_imunisasi`
 -- AUTO_INCREMENT for table `tbl_jenis_imunisasi`
 --
 ALTER TABLE `tbl_jenis_imunisasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_kader`
@@ -249,7 +253,7 @@ ALTER TABLE `tbl_ortu`
 -- AUTO_INCREMENT for table `tbl_pertumbuhan`
 --
 ALTER TABLE `tbl_pertumbuhan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
