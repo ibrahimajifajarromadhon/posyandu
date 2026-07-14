@@ -21,7 +21,6 @@
                     <th class="px-4 py-3">ID Ortu</th>
                     <th class="px-4 py-3">Nama Ayah</th>
                     <th class="px-4 py-3">Nama Ibu</th>
-                    <th class="px-4 py-3">No. Handphone</th>
                     <th class="px-4 py-3">Username</th>
                     <th class="px-4 py-3">Email</th>
                     <th class="px-4 py-3">Alamat</th>
@@ -50,9 +49,6 @@
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <?php echo !empty($ortu->nm_ibu) ? $ortu->nm_ibu : "-" ?>
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                <?php echo !empty($ortu->no_hp) ? $ortu->no_hp : "-" ?>
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <?php echo !empty($ortu->username) ? $ortu->username : "-" ?>

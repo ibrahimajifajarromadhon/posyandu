@@ -222,7 +222,7 @@
                 <div class="col-md-6">
                     <div class="fasilitas-item">
                         <i class="bi bi-journal-text"></i>
-                        <span>Buku KIA (Kesehatan Ibu dan Anak)</span>
+                        <span>Buku KMS bayi dan balita</span>
                     </div>
                 </div>
 

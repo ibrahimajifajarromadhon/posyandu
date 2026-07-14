@@ -70,7 +70,6 @@ class Backend extends CI_Controller
 	{
 		$this->form_validation->set_rules('nm_ayah', 'Nama Ayah', 'required');
 		$this->form_validation->set_rules('nm_ibu', 'Nama Ibu', 'required');
-		$this->form_validation->set_rules('no_hp', 'No Handphone', 'required');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 		$this->form_validation->set_rules('pekerjaan_ayah', 'Pekerjaan Ayah', 'required');
 		$this->form_validation->set_rules('pekerjaan_ibu', 'Pekerjaan Ibu', 'required');
@@ -95,7 +94,6 @@ class Backend extends CI_Controller
 			$username = $this->input->POST('username');
 			$password = $this->input->POST('password');
 			$email = $this->input->POST('email');
-			$nohp = $this->input->POST('no_hp');
 			$alamat = $this->input->POST('alamat');
 			$pekerjaan_ayah = $this->input->POST('pekerjaan_ayah');
 			$pekerjaan_ibu = $this->input->POST('pekerjaan_ibu');
@@ -108,7 +106,6 @@ class Backend extends CI_Controller
 				'username' => $username,
 				'password' => $hashed_password,
 				'email' => $email,
-				'no_hp' => $nohp,
 				'alamat' => $alamat,
 				'pekerjaan_ayah' => $pekerjaan_ayah,
 				'pekerjaan_ibu' => $pekerjaan_ibu
@@ -134,7 +131,6 @@ class Backend extends CI_Controller
 
 		$this->form_validation->set_rules('nm_ayah', 'Nama Ayah', 'required');
 		$this->form_validation->set_rules('nm_ibu', 'Nama Ibu', 'required');
-		$this->form_validation->set_rules('no_hp', 'No Handphone', 'required');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 		$this->form_validation->set_rules('pekerjaan_ayah', 'Pekerjaan Ayah', 'required');
 		$this->form_validation->set_rules('pekerjaan_ibu', 'Pekerjaan Ibu', 'required');
@@ -157,7 +153,6 @@ class Backend extends CI_Controller
 			$username = $this->input->POST('username');
 			$password = $this->input->POST('password');
 			$email = $this->input->POST('email');
-			$nohp = $this->input->POST('no_hp');
 			$alamat = $this->input->POST('alamat');
 			$pekerjaan_ayah = $this->input->POST('pekerjaan_ayah');
 			$pekerjaan_ibu = $this->input->POST('pekerjaan_ibu');
@@ -177,7 +172,6 @@ class Backend extends CI_Controller
 				'nm_ibu' => $nm_ibu,
 				'username' => $username,
 				'email' => $email,
-				'no_hp' => $nohp,
 				'alamat' => $alamat,
 				'pekerjaan_ayah' => $pekerjaan_ayah,
 				'pekerjaan_ibu' => $pekerjaan_ibu
@@ -255,7 +249,6 @@ class Backend extends CI_Controller
 	function data_balita_input_aksi()
 	{
 		$this->form_validation->set_rules('id_ortu', 'Nama Ibu', 'required');
-		$this->form_validation->set_rules('nik_balita', 'NIK Balita', 'required');
 		$this->form_validation->set_rules('nm_balita', 'Nama Balita', 'required');
 		$this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
@@ -310,7 +303,6 @@ class Backend extends CI_Controller
 	{
 		$id_balita = $this->input->POST('id_balita');
 		$this->form_validation->set_rules('id_ortu', 'Nama Ibu', 'required');
-		$this->form_validation->set_rules('nik_balita', 'NIK Balita', 'required');
 		$this->form_validation->set_rules('nm_balita', 'Nama Balita', 'required');
 		$this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');

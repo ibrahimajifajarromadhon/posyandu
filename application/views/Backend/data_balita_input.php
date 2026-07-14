@@ -34,7 +34,7 @@
     <div class="form-row">
       <div class="col-md-12">
         <div class="form-group">
-          <label for="nik_balita">NIK *</label>
+          <label for="nik_balita">NIK Balita</label>
           <input type="text" id="nik_balita" name="nik_balita"
             value="<?php echo set_value('nik_balita') ?>"
             class="form-control"

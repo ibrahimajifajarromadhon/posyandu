@@ -63,16 +63,6 @@
       <div class="form-row">
         <div class="col-md-12">
           <div class="form-group">
-            <label for="no_hp">No.Handphone</label>
-            <input type="text" id="no_hp" name="no_hp" class="form-control" value="<?php echo $ortu->no_hp ?>">
-            <span class="text-sm text-red-600"><?= form_error('no_hp') ?></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="col-md-12">
-          <div class="form-group">
             <label for="alamat">Alamat</label>
             <textarea id="alamat" name="alamat" class="form-control"><?php echo $ortu->alamat ?></textarea>
             <span class="text-sm text-red-600"><?= form_error('alamat') ?></span>

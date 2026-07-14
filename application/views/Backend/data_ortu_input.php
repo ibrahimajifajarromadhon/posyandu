@@ -64,16 +64,6 @@
 		<div class="form-row">
 			<div class="col-md-12">
 				<div class="form-group">
-					<label for="no_hp">No.Handphone *</label>
-					<input type="number" id="no_hp" name="no_hp" value="<?php echo set_value('no_hp') ?>" class="form-control" placeholder="Contoh : 08123456789">
-					<span class="text-sm text-red-600"><?= form_error('no_hp') ?></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="form-row">
-			<div class="col-md-12">
-				<div class="form-group">
 					<label for="alamat">Alamat *</label>
 					<textarea id="alamat" name="alamat" class="form-control" placeholder="Contoh : Jalan Raya No. 1, Sleman, Yogyakarta"><?php echo set_value('alamat') ?></textarea>
 					<span class="text-sm text-red-600"><?= form_error('alamat') ?></span>

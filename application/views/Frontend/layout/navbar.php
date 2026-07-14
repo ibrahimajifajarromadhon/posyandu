@@ -42,9 +42,6 @@
 				<li class="nav-item">
 					<a class="nav-link page-scroll" href="<?php echo base_url() . 'Frontend/imunisasi' ?>">IMUNISASI</a>
 				</li>
-				<!-- <li class="nav-item">
-					<a class="nav-link page-scroll" href="<?php echo base_url() . 'Frontend/profil_view/' . $this->session->userdata('ses_id_ortu') . '' ?>">PROFIL</a>
-				</li> -->
 			</ul>
 			<span class="nav-item">
 				<a class="btn-outline-sm" href="<?php echo base_url() . 'Login/logout' ?>">LOG OUT</a>
